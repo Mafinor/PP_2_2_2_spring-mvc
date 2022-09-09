@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public class CarService {
 
-    public static int CAR_COUNT;
+    private static int CAR_COUNT;
     private final List<Car> cars = new ArrayList<>();
 
     {

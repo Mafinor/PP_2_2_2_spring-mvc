@@ -12,6 +12,7 @@ import web.service.CarService;
 @RequestMapping("/cars")
 public class CarController {
 
+    private static final int DEFAULT_VALUE = 5;
     private final CarService carService;
 
     @Autowired
@@ -20,18 +21,9 @@ public class CarController {
     }
 
     @GetMapping
-    public String index(@RequestParam(value = "count", required = false) String input, Model model) {
-        //Для ментора - что почитать, чтобы избавится от этого ужаса с исключениями?
-        //Всяко есть что-нибудь
-        int count;
-        try {
-            count = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            model.addAttribute("cars", carService.getCars(CarService.CAR_COUNT));
-            return "/cars";
-        }
-        if (count < 0 || count >= CarService.CAR_COUNT) {
-            model.addAttribute("cars", carService.getCars(CarService.CAR_COUNT));
+    public String index(@RequestParam(value = "count", required = false) Integer count, Model model) {
+        if (count == null || count < 0 || count >= DEFAULT_VALUE) {
+            model.addAttribute("cars", carService.getCars(DEFAULT_VALUE));
             return "/cars";
         }
         model.addAttribute("cars", carService.getCars(count));

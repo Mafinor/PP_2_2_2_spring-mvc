@@ -20,6 +20,9 @@ public class CarService {
     }
 
     public List<Car> getCars(Integer count) {
+        if (count > 5 || count < 0) {
+            return new ArrayList<>(cars.stream().toList());
+        }
         return new ArrayList<>(cars.stream().limit(count).toList());
     }
 }

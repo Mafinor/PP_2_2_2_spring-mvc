@@ -11,8 +11,6 @@ import web.service.CarService;
 @Controller
 @RequestMapping("/cars")
 public class CarController {
-
-    private static final int DEFAULT_VALUE = 5;
     private final CarService carService;
 
     @Autowired
@@ -21,11 +19,7 @@ public class CarController {
     }
 
     @GetMapping
-    public String index(@RequestParam(value = "count", required = false) Integer count, Model model) {
-        if (count == null || count < 0 || count >= DEFAULT_VALUE) {
-            model.addAttribute("cars", carService.getCars(DEFAULT_VALUE));
-            return "/cars";
-        }
+    public String index(@RequestParam(value = "count", defaultValue = "5") Integer count, Model model) {
         model.addAttribute("cars", carService.getCars(count));
         return "/cars";
     }

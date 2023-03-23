@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 @Component
 public class CarService {
-
     private static int CAR_COUNT;
     private final List<Car> cars = new ArrayList<>();
 

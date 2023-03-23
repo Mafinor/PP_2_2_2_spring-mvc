@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
@@ -19,6 +20,7 @@
                 <th> Model </th>
             </tr>
         </thead>
+
         <tbody>
             <tr th:each="car : ${cars}">
                 <td th:text="${car.getSerial()}"/>
